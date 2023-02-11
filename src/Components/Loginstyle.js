@@ -4,12 +4,13 @@ import styled from "styled-components";
 export const Container=styled.div`
  padding:0px
 `;
+
 export const Nav= styled.nav`
   max-width:1128px;
   margin:auto;
   padding:12px 0 16px;
   display: flex;
-  aline-items:center;
+  align-items: center;
   position: relative;
   justify-content: space-between;
   flex-wrap: nowrap;
@@ -22,9 +23,10 @@ export const Nav= styled.nav`
     }
   }
 `;
+
 export const Join=styled.a`
   font-size: 16px;
-  font-weigth: bold;
+  font-weight: bold;
   padding: 10px 12px;
   text-decoration: none;
   border-radius: 24px;
@@ -42,7 +44,7 @@ export const SignIn=styled.a`
    background-color: rgba(0,0,0,0);
    border-radius: 24px;
    font-size: 16px;
-   font-weigth: 600;
+   font-weight: 600;
    line-height: 40px;
    padding: 10px 12px;
    transition-duration: 167ms;
