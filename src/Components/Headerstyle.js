@@ -130,6 +130,7 @@ export const NavList = styled.li`
 
 export const SignOut = styled.div`
   position: absolute;
+  cursor: pointer;
   top: 45px;
   background: white;
   border-radius: 0 0 5px 5px;

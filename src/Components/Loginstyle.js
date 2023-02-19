@@ -75,35 +75,44 @@ export const Section = styled.section`
   }
 `;
 export const Logingthumb=styled.div`
-    width: 100%;
-  h1 {
+   width: 100%;
+h1 {
     padding-bottom: 0;
-    width: 55%;
+    width: 56%;
     font-size: 56px;
+    font-family: sans-serif;
     color: #2977c9;
-    font-weight: 200;
+    font-weight: 500;
     line-height: 70px;
     @media (max-width: 768px) {
-      text-align: center;
-      font-size: 20px;
-      width: 100%;
-      line-height: 2;
+        text-align: center;
+        font-size: 32px;
+        width: unset;
+        line-height: 40px;
+        padding-bottom: 12px;
     }
-  }
-  img {
-    /* z-index: -1; */
-    width: 700px;
-    height: 670px;
+}
+img {
+z-index: 1;
+width: 700px;
+height: 670px;
+position: absolute;
+bottom: 156px;
+right: -150px;
+overflow: hidden;
+@media (max-width: 768px){
+    top: 230px;
+    /* min-width: 374px; */
+    width: 320px;
+    position: initial;
+    height: 240px;
+    bottom: calc(-64px);
+    /* height: 240px;
+    min-width: 374px;
     position: absolute;
-    bottom: -2px;
-    right: -150px;
-    @media (max-width: 768px) {
-      top: 230px;
-      width: initial;
-      position: initial;
-      height: initial;
-    }
-  }
+    bottom: calc(-64px); */
+}
+}
 `;
 
 export const Form=styled.div`

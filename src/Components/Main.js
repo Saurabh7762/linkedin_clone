@@ -1,5 +1,5 @@
 import React from 'react'
-import { Artical, Container, Description, ShareBox, SharedActor, SharedImg } from './Mainstyle'
+import { Artical, Container, Description, ShareBox, SharedActor, SharedImg, SocialActions, SocialCounts } from './Mainstyle'
 
 function Main(props) {
   return (
@@ -53,8 +53,44 @@ function Main(props) {
             <a>
               <img src='/images/link-home-img.png' alt=''/>
               </a>
-          </SharedImg>     
-          <img src='/images/repost.svg' />
+          </SharedImg>
+          <SocialCounts>
+            <li>
+              <button>
+                <img 
+                   src='https://static-exp1.licdn.com/sc/h/d310t2g24pvdy4pt1jkedo4yb'
+                   alt=''
+                />
+                <img 
+                   src='https://static-exp1.licdn.com/sc/h/5thsbmikm6a8uov24ygwd914f'
+                   alt=''
+                />
+                <span>75</span>
+              </button>
+            </li>
+            <li>
+              <a>2 comments</a>
+            </li>
+          </SocialCounts> 
+          <SocialActions>
+            <button>
+               <img src='/images/like.svg' alt='' />
+               <span>Like</span>
+            </button> 
+            <button>
+               <img src='/images/comment.svg' alt='' />
+               <span>Comments</span>
+            </button> 
+            <button>
+               <img src='/images/repost.svg' alt='' />
+               <span>Repost</span>
+            </button> 
+            <button>
+               <img src='/images/Send.svg' alt='' />
+               <span>Send</span>
+            </button> 
+          </SocialActions>
+          
         </Artical>
       </div>
     </Container>

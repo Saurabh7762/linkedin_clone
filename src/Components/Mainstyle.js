@@ -147,3 +147,51 @@ export const SharedImg=styled.div`
       height: 100%;
    }
 `;
+
+export const SocialCounts=styled.ul`
+   line-height: 1.3;
+   display: flex;
+   align-items: flex-start;
+   overflow: auto;
+   margin: 0 16px;
+   padding: 8px 0;
+   border-bottom: 1px solid #e9e5df;
+   list-style: none;
+   li{
+      margin-right: 5px;
+      font-size: 12px;
+      button{
+         display: flex;
+      }
+   }
+`;
+
+export const SocialActions=styled.div`
+   align-items: center;
+   display: flex;
+   justify-content: space-between;
+   margin: 0;
+   min-height: 40px;
+   padding: 4px 8px;
+   button {
+      border: none;
+      background: none;
+      cursor: pointer;
+      border-radius: 3px;
+      display: flex;
+      align-items: center;
+      column-gap: 5px;
+      padding: 8px;
+      color: rgba(0,0,0,0.6); 
+      &:hover{
+         background: rgba(0,0,0,0.1);
+      }
+
+      @media (min-width: 768px) {
+         span{
+            margin-left: 8px;
+         }
+         
+      }
+   }
+`;

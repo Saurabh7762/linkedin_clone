@@ -1,8 +1,10 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React from 'react'
 import { Container, Content, Logo,Search, SearchIcon, Nav, NavListWrap, NavList,SignOut, User, Work} from './Headerstyle'
+import { connect } from "react-redux";
+import { signOutAPI } from "../actions"
 
-function Header() {
+function Header(props) {
   return (
 <Container>
       <Content>
@@ -58,18 +60,25 @@ function Header() {
 
             <User>
               <a>
+                {/* user login photo come from google authentication */}
+                {props.user && props.user.photoURL ? ( <img src={props.user.photoURL} alt={props.user.displayName} /> 
+                ) : (
+                  //if user photo is not existing the show the dummy image
                 <img src="/images/user.svg" alt="" />
-                <span>Me</span>
+                )}
+                <span>Me
                 <img src="/images/down-icon.svg" alt="" />
+                </span>
               </a>
 
-              <SignOut>
+              <SignOut onClick={()=> props.signOut()}>
                 <a>Sign Out</a>
               </SignOut>
             </User>
 
             <Work>
               <a>
+
                 <img src="/images/nav-work.svg" alt="" />
                 <span>
                   Work
@@ -84,5 +93,17 @@ function Header() {
   );
 }
 
+// dispatch function for redux
 
-export default Header
+const mapStateToProps = (state) => {
+  return {
+    user: state.userState.user,
+  };
+};
+
+
+const mapDispatchToProps = (dispatch) => ({
+  signOut: () => dispatch(signOutAPI())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
