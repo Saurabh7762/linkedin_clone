@@ -114,7 +114,7 @@ export const SharedActor=styled.div`
             color: rgba(0,0,0,1);
 
          }
-         &:nth-child(n+1){
+         &:nth-child(n+2){
             font-size:12px;
             color: rgba(0,0,0,0.6);
          }
@@ -153,7 +153,7 @@ export const SharedImg=styled.div`
    }
 `;
 
-export const SocialCounts=styled.ul`
+export const SocialCounts = styled.ul`
    line-height: 1.3;
    display: flex;
    align-items: flex-start;
@@ -167,6 +167,12 @@ export const SocialCounts=styled.ul`
       font-size: 12px;
       button{
          display: flex;
+         border: none;
+         color: rgba(0,0,0,0.6);
+         background: transparent;
+         span{
+            padding-left: 5px;
+         }
       }
    }
 `;
@@ -188,6 +194,14 @@ export const SocialActions=styled.div`
       column-gap: 5px;
       padding: 8px;
       color: rgba(0,0,0,0.6); 
+      border: none;
+      background: transparent;
+      span{
+         margin-left: 4px;
+         color: rgba(0,0,0,0.6);
+         font-size: 14px;
+      }
+
       &:hover{
          background: rgba(0,0,0,0.1);
       }
@@ -197,6 +211,15 @@ export const SocialActions=styled.div`
             margin-left: 8px;
          }
          
+      }
+   }
+   button.active{
+      span{
+         color:#0a66c2;
+         font-weight:600;
+      }
+      svg{
+         fill:#0a66c2;
       }
    }
 `;

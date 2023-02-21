@@ -1,8 +1,8 @@
-import React from 'react';
+import React from "react";
 import { useEffect, useState } from "react";
 import { getArticlesAPI } from "../actions";
-import { connect } from 'react-redux';
-import ReactPlayer from 'react-player';
+import { connect } from "react-redux";
+import ReactPlayer from "react-player";
 import {
   Artical,
   Container,
@@ -14,7 +14,7 @@ import {
   SocialCounts,
   Content,
 } from "./Mainstyle";
-import Postmodel from './Postmodel';
+import Postmodel from "./Postmodel";
 
 function Main(props) {
   const [showModal, setShowModal] = useState("close");
@@ -95,7 +95,9 @@ function Main(props) {
                       <div>
                         <span>{article.actor.title}</span>
                         <span>{article.actor.description}</span>
-                        <span>{article.actor.date.toDate().toLocaleDateString()}</span>
+                        <span>
+                          {article.actor.date.toDate().toLocaleDateString()}
+                        </span>
                       </div>
                     </a>
                     <button>
@@ -105,13 +107,13 @@ function Main(props) {
                   <Description>{article.description}</Description>
                   <SharedImg>
                     <a>
-                      {
-                        !article.sharedImg && article.video ? <ReactPlayer width={'100%'} url={article.video}/>
-                        :
-                        (
-                          article.sharedImg && <img src={article.sharedImg} alt=""/>
+                      {!article.sharedImg && article.video ? (
+                        <ReactPlayer width={"100%"} url={article.video} />
+                      ) : (
+                        article.sharedImg && (
+                          <img src={article.sharedImg} alt="" />
                         )
-                      }
+                      )}
                     </a>
                   </SharedImg>
                   <SocialCounts>
@@ -162,11 +164,11 @@ function Main(props) {
 // on this app we are not using redux toolkit so we set the props manually of each state
 // here we are going to tell redux about the state
 const mapStateToProps = (state) => {
-    return {
-        loading: state.articleState.loading,
-        user: state.userState.user,
-        articles: state.articleState.articles,
-    };
+  return {
+    loading: state.articleState.loading,
+    user: state.userState.user,
+    articles: state.articleState.articles,
+  };
 };
 
 // redux stuffs for fetch data from firebase to frontend

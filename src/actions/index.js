@@ -50,18 +50,18 @@ export const setLoading = (status) => ({
   status: status,
 });
 
-export const getArticles = (payload) => ({
+export const getArticles = (payload, id) => ({
   type: GET_ARTICLES,
   payload: payload,
+  id: id,
 });
 
 export function postArticleAPI(payload) {
   return (dispatch) => {
-    //loading bar start
-    dispatch(setLoading(true));
 
     //loading bar end
     if (payload.image != "") {
+      dispatch(setLoading(true));
       const upload = storage
         .ref(`images/${payload.image.name}`)
         .put(payload.image);
@@ -78,7 +78,7 @@ export function postArticleAPI(payload) {
             console.log(`progress: ${progress}%`);
           }
         },
-        (error) => console.log(error.code),
+        (error) => alert(error),
         //download url
         async () => {
           const downloadURL = await upload.snapshot.ref.getDownloadURL();
@@ -92,6 +92,10 @@ export function postArticleAPI(payload) {
             },
             video: payload.video,
             sharedImg: downloadURL,
+            likes: {
+              count: 0,
+              whoLiked: [],
+            },
             comments: 0,
             description: payload.description,
           });
@@ -102,6 +106,7 @@ export function postArticleAPI(payload) {
     }
     // db collection for video
     else if (payload.video) {
+      dispatch(setLoading(true));
       db.collection("articles").add({
         actor: {
           description: payload.user.email,
@@ -111,10 +116,33 @@ export function postArticleAPI(payload) {
         },
         video: payload.video,
         sharedImg: "",
+        likes:{
+          count: 0,
+          whoLiked: [],
+        },
         comments: 0,
         description: payload.description,
       });
       // finish the loading here
+      dispatch(setLoading(false));
+    } else if(payload.image ==="" && payload.video===""){
+      dispatch(setLoading(true));
+      db.collection("articles").add({
+        actor:{
+          description:payload.user.email,
+          title:payload.user.displayName,
+          date: payload.timestamp,
+          image:payload.user.photoURL,
+        },
+        video:"",
+        sharedImg:"",
+        likes:{
+          count:0,
+          whoLiked:[],
+        },
+        comments:0,
+        description:payload.description,
+      });
       dispatch(setLoading(false));
     }
   };
@@ -124,15 +152,24 @@ export function postArticleAPI(payload) {
 // fetch the article on main content area from firebase by using useeffect
 export function getArticlesAPI() {
     return (dispatch) => {
+        dispatch(setLoading(true));
         let payload;
+        let id;
     //  fetch data from database
-    db.collection("articles").orderBy("actor.date", "desc")
+    db.collection("articles")
+      .orderBy("actor.date", "desc")
     // this allow to retain data from firebase
-    .onSnapshot((snapshot) => {
-        payload = snapshot.docs.map((doc) =>  doc.data());
-        //console.log(payload);
-        //show articles on frontend by this
-        dispatch(getArticles(payload));
+      . onSnapshot((snapshot) => {
+        payload = snapshot.docs.map((doc) => doc.data());
+        id = snapshot.docs.map((doc) => doc.id);
+        dispatch(getArticles(payload, id));
     });
-    }
+    dispatch(setLoading(false));
+    };
+}
+
+export function updateArticleAPI(payload) {
+  return (dispatch) => {
+    db.collection("articles").doc(payload.id).update(payload.update);
+  };
 }

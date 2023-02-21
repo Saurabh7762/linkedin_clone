@@ -16,7 +16,7 @@ export const Content = styled.div`
     position: relative;
     display: flex;
     flex-direction: column;
-    top: 72px;
+    top: 32px;
     width: 100%;
     max-width:552px;
     max-height: 90%;
@@ -27,38 +27,34 @@ export const Content = styled.div`
 `;
 
 export const Header = styled.div`
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 4px 20px;
-    font-size: 16px;
-    line-height: 1.5%;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
-    color: rgba(0, 0, 0, 0.6);
+  display: block;
+  padding: 10px 20px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  font-size: 20px;
+  line-height: 1.5;
+  color: rgba(0, 0, 0, 0.9);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  h2 {
     font-weight: 400;
-    h2 {
-    
-    font-size: 18px;
-    line-height: 1.4;
+  }
+  button {
+    width: 40px;
+    height: 40px;
+    min-width: auto;
+    border: none;
+    outline: none;
+    background: transparent;
+    img,
+    svg {
+      pointer-events: none;
     }
-    button {
-        width: 40px;
-        height: 40px;
-        min-width: auto;
-        background: transparent;
-        border: none;
-        outline: none;
-        cursor: pointer;
-        color: rgba(0, 0, 0, 0.15);
-        svg, 
-        img {
-            pointer-events: none;
-        }
-        &:hover{
-        background: rgba(0,0,0,0.1);
-        border-radius: 50px;
+    &:hover {
+      background: rgba(0, 0, 0, 0.1);
+      border-radius: 50px;
     }
-    }
+  }
 `;
 
 export const SharedContent= styled.div`

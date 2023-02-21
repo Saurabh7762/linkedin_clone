@@ -31,10 +31,12 @@ function Postmodel(props) {
 
   // asset area state
   const [assetArea, setAssetArea] = useState("");
+
+
   const handleChange = (e) => {
     const image = e.target.files[0];
     if (image === "" || image === undefined) {
-      alert("not an image, the files is a ${typeof image}");
+      alert("Not an image, the files is a ${typeof image}");
       return;
     }
     setShareImage(image);
@@ -83,13 +85,15 @@ const postArticle=(e)=>{
             </Header>
             <SharedContent>
               <UserInfo>
-                {props.user.photoURL ? (
+                {props.user.photoURL ? 
                   <img src={props.user.photoURL} alt="" />
-                ) : (
+                 : 
                   <img src="/images/user.svg" alt="" />
-                )}
+                }
 
-                <span>{props.user ? props.user.displayName : "there"}</span>
+                <span>
+                  {props.user.displayName ? props.user.displayName : "Name"}
+                </span>
               </UserInfo>
               <Editor>
                 {/* onchange grab the value from the texteditor on the targetvalue */}
@@ -119,9 +123,9 @@ const postArticle=(e)=>{
                       </label>
                     </p>
                     {/* if the image already exists then do this to show the import image on the poppop box*/}
-                    {shareImage && (
+                    {shareImage &&
                       <img src={URL.createObjectURL(shareImage)} alt="" />
-                    )}
+                    }
                     {/* for video upload */}
                     {/* first add empty jsx fragment */}
                   </UploadImage>
@@ -131,6 +135,7 @@ const postArticle=(e)=>{
                     <>
                       <input
                         type="text"
+                        id="videoLink"
                         value={videoLink}
                         // take the event and set the video link based on whatever the user gives you the value of the event
                         onChange={(e) => setVideoLink(e.target.value)}
@@ -166,7 +171,10 @@ const postArticle=(e)=>{
                     <span>Anyone</span>
                   </AssetButton>
                 </ShareComment>
-                <PostButton disabled={!editorText ? true : false} onClick={(event)=> postArticle(event)} >
+                <PostButton
+                  disabled={!editorText ? true : false}
+                  onClick={(e) => postArticle(e)}
+                >
                   Post
                 </PostButton>
               </AttachAssets>

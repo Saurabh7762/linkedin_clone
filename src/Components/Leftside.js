@@ -3,13 +3,14 @@ import { connect } from 'react-redux';
 import { Container,ArtCard,UserInfo,CardBackground,Photo,Link,AddPhotoText,Widget,Item,CommunityCard  } from './Leftsidestyle'
 
 function Leftside(props) {
+  
   return (
     <Container>
       <ArtCard>
         <UserInfo>
           <CardBackground />
           <a>
-            <Photo></Photo>
+            <Photo/>
             <Link>{props.user ? props.user.displayName : "there"}</Link>
           </a>
           <a>
