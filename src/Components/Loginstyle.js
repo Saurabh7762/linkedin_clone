@@ -75,8 +75,8 @@ export const Section = styled.section`
   }
 `;
 export const Logingthumb=styled.div`
-   width: 100%;
-h1 {
+  width: 100%;
+  h1 {
     padding-bottom: 0;
     width: 56%;
     font-size: 56px;
@@ -91,16 +91,16 @@ h1 {
         line-height: 40px;
         padding-bottom: 12px;
     }
-}
-img {
-z-index: 1;
-width: 700px;
-height: 670px;
-position: absolute;
-bottom: 156px;
-right: -150px;
-overflow: hidden;
-@media (max-width: 768px){
+    }
+  img {
+    z-index: 1;
+    width: 700px;
+    height: 670px;
+    position: absolute;
+    bottom: 156px;
+    right: -150px;
+    overflow: hidden;
+    @media (max-width: 768px){
     top: 230px;
     /* min-width: 374px; */
     width: 320px;
@@ -111,7 +111,7 @@ overflow: hidden;
     min-width: 374px;
     position: absolute;
     bottom: calc(-64px); */
-}
+  }
 }
 `;
 

@@ -1,4 +1,5 @@
 import React from 'react'
+import { connect } from 'react-redux';
 import { Container,ArtCard,UserInfo,CardBackground,Photo,Link,AddPhotoText,Widget,Item,CommunityCard  } from './Leftsidestyle'
 
 function Leftside(props) {
@@ -8,8 +9,8 @@ function Leftside(props) {
         <UserInfo>
           <CardBackground />
           <a>
-            <Photo />
-            <Link>Welcome, there!</Link>
+            <Photo></Photo>
+            <Link>{props.user ? props.user.displayName : "there"}</Link>
           </a>
           <a>
             <AddPhotoText>Add a photo</AddPhotoText>
@@ -52,5 +53,13 @@ function Leftside(props) {
     </Container>
   );
 };
+// on this app we are not using redux toolkit so we set the props manually of each state
+// here we are going to tell redux about the state
+const mapStateToProps = (state) => {
+    return {
+        user: state.userState.user,
+    };
+};
 
-export default Leftside
+//  not use dispatch because we are not using ant action of dispatch here
+export default connect(mapStateToProps)(Leftside)

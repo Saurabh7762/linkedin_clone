@@ -14,59 +14,64 @@ export const CommonCard=styled.div`
    box-shadow: 0 0 0 1px rgb(0 0 0 / 15%), 0 0 0 rgb(0 0 0 / 20%);
 `;
 
-export const ShareBox=styled(CommonCard)`
-   display: flex;
-   flex-direction: column;
-   color: #958b7b;
-   margin: 0 0 8px;
-   background: white;
-   div {
-      button{
-         outline: none;
-         color: rgba(0,0,0,0.6);
-         font-size: 14px;
-         line-height: 1.5;
-         min-height: 48px;
-         background: transparent;
-         border:none;
-         display: flex;
-         align-items: center;
-         font-weight:600;  
-
+export const ShareBox = styled(CommonCard)`
+  display: flex;
+  flex-direction: column;
+  color: #958b7b;
+  margin: 0 0 8px;
+  background: white;
+  div {
+    button {
+      outline: none;
+      color: rgba(0, 0, 0, 0.6);
+      font-size: 14px;
+      line-height: 1.5;
+      min-height: 48px;
+      background: transparent;
+      border: none;
+      display: flex;
+      align-items: center;
+      font-weight: 600;
+      cursor: pointer;
+      border-radius: 5px;
+      &:hover {
+        background: rgba(0, 0, 0, 0.1);
       }
-      &:first-child{
-         display: flex;
-         align-items: center;
-         padding: 8px 16px 0px 16px;
-         img{
-            width: 48px;
-            border-radius: 50%;
-            margin-right: 8px;
-         }
-         button{
-            margin: 4px 0;
-            flex-grow: 1;
-            border-radius: 35px;
-            padding-left: 16px;
-            border: 1px solid rgba(0,0,0,0.15);
-            background-color: white;
-            text-align: left;
-
-         }
+    }
+    &:first-child {
+      display: flex;
+      align-items: center;
+      padding: 8px 16px 0px 16px;
+      img {
+        width: 48px;
+        border-radius: 50%;
+        margin-right: 8px;
       }
-      &:nth-child(2){
-         display: flex;
-         flex-wrap: wrap;
-         justify-content: space-around;
-         padding-bottom: 4px;
-         button{
-            img{
-               margin: 0 4px 0 -2px;
-            }
-         }
-
+      button {
+        margin: 4px 0;
+        flex-grow: 1;
+        border-radius: 35px;
+        padding-left: 16px;
+        border: 1px solid rgba(0, 0, 0, 0.15);
+        background-color: white;
+        text-align: left;
+        &:hover {
+          background: rgba(0, 0, 0, 0.1);
+        }
       }
-   }
+    }
+    &:nth-child(2) {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      padding-bottom: 4px;
+      button {
+        img {
+          margin: 0 4px 0 -2px;
+        }
+      }
+    }
+  }
 `;
 
 
@@ -193,5 +198,12 @@ export const SocialActions=styled.div`
          }
          
       }
+   }
+`;
+
+export const Content=styled.div`
+   text-align: center;
+   &>img{
+      width:60px
    }
 `;
