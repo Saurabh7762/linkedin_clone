@@ -3,6 +3,9 @@ import { connect } from 'react-redux';
 import { Container,ArtCard,UserInfo,CardBackground,Photo,Link,AddPhotoText,Widget,Item,CommunityCard  } from './Leftsidestyle'
 
 function Leftside(props) {
+  let photoUrl = props.user.photoURL
+    ? props.user.photoURL
+    : "/images/photo.svg";
   
   return (
     <Container>
@@ -10,7 +13,7 @@ function Leftside(props) {
         <UserInfo>
           <CardBackground />
           <a>
-            <Photo/>
+            <Photo photoUrl={photoUrl} />
             <Link>{props.user ? props.user.displayName : "there"}</Link>
           </a>
           <a>
