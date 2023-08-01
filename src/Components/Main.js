@@ -89,24 +89,44 @@ function likeHandler(event, postIndex, id) {
         </div>
 
         <div>
-          <button>
-            <img src="/images/photo-icon.svg" alt="" />
-            <span>Photo</span>
+          <button onClick={handleClick} disabled={props.loading ? true : false}>
+            <img
+              src="/images/photo-icon.svg"
+              alt=""
+              onClick={handleClick}
+              disabled={props.loading ? true : false}
+            />
+            Photo
           </button>
 
-          <button>
-            <img src="/images/video-icon.svg" alt="" />
-            <span>Video</span>
+          <button onClick={handleClick} disabled={props.loading ? true : false}>
+            <img
+              src="/images/video-icon.svg"
+              alt=""
+              onClick={handleClick}
+              disabled={props.loading ? true : false}
+            />
+            Video
           </button>
 
-          <button>
-            <img src="/images/event-icon.svg" alt="" />
-            <span>Event</span>
+          <button onClick={handleClick} disabled={props.loading ? true : false}>
+            <img
+              src="/images/event-icon.svg"
+              alt=""
+              onClick={handleClick}
+              disabled={props.loading ? true : false}
+            />
+            Event
           </button>
 
-          <button>
-            <img src="/images/writer-artical-icon.svg" alt="" />
-            <span>Write article</span>
+          <button onClick={handleClick} disabled={props.loading ? true : false}>
+            <img
+              src="/images/writer-artical-icon.svg"
+              alt=""
+              onClick={handleClick}
+              disabled={props.loading ? true : false}
+            />
+            Write article
           </button>
         </div>
       </ShareBox>

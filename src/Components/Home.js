@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Section, Content, Layout } from './Homestyle'
+import { Container, Content, Layout } from './Homestyle'
 import Main from './Main'
 import Rightside from './Rightside'
 import Leftside from './Leftside'
@@ -11,14 +11,6 @@ function Home(props) {
     <Container>
       {!props.user && <Navigate to="/" />}
       <Content>
-      <Section>
-        <h5>
-          <a>Hiring in a hurry?-</a>
-        </h5>
-        <p>
-          Find talented pros in record time with Upwork and keep business moving.
-        </p>
-      </Section>
       <Layout>
         <Leftside/>
         <Main/>
