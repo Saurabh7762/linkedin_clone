@@ -22,6 +22,9 @@ export const Content = styled.div`
 export const Logo = styled.span`
   margin-right: 8px;
   font-size: 0px;
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 export const Search = styled.div`
@@ -46,6 +49,16 @@ export const Search = styled.div`
       vertical-align: text-top;
     }
   }
+  @media (max-width: 768px) {
+    display: flex;
+    align-items: center;
+  }
+`;
+export const SearchMob = styled.div`
+  @media (max-width: 768px) {
+    display: flex;
+    align-items: center;
+  }
 `;
 
 export const SearchIcon = styled.div`
@@ -64,11 +77,12 @@ export const SearchIcon = styled.div`
 
 export const Nav = styled.nav`
   margin-left: auto;
-  display: block;
+  display: flex;
   @media (max-width: 768px) {
     position: fixed;
     left: 0;
     bottom: 0;
+    justify-content:space-around;
     background: white;
     width: 100%;
   }
@@ -92,7 +106,27 @@ export const NavListWrap = styled.ul`
     }
   }
 `;
-
+export const ContentMob = styled.li`
+  list-style-type: none;
+  display: flex;
+  align-items: center;
+  @media (max-width: 768px) {
+    width: 95%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+`;
+export const NavListMessup = styled.li`
+  @media (min-width: 768px) {
+    display: none;
+  }
+`;
+export const NavListMess = styled.li`
+  @media (max-width: 768px) {
+    display:none;
+  }
+`;
 export const NavList = styled.li`
   display: flex;
   align-items: center;
@@ -115,7 +149,7 @@ export const NavList = styled.li`
       align-items: center;
     }
     @media (max-width: 768px) {
-      min-width: 70px;
+      justify-content: space-around;
     }
   }
   &:hover,
@@ -164,7 +198,20 @@ export const User = styled(NavList)`
     }
   }
 `;
+export const UserMob = styled(NavList)`
+  @media (min-width: 768px) {
+    display: none;
+  }
+`;
+export const UserMobbt = styled(NavList)`
+  @media (max-width: 768px) {
+    display: none;
+  }
+`;
 
 export const Work = styled(User)`
   border-left: 1px solid rgba(0, 0, 0, 0.08);
+  @media (max-width: 768px) {
+    display:none;
+  }
 `;

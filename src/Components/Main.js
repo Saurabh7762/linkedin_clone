@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { getArticlesAPI, updateArticleAPI } from "../actions";
 import { connect } from "react-redux";
 import ReactPlayer from "react-player";
-import { switchAssetArea } from "./Postmodel";
 import {
   Artical,
   Container,
@@ -14,8 +13,9 @@ import {
   SocialActions,
   SocialCounts,
   Content,
-} from "./Mainstyle";
+} from "./Styles/Mainstyle";
 import Postmodel  from "./Postmodel";
+
 
 function Main(props) {
   const [showModal, setShowModal] = useState("close");
@@ -25,7 +25,7 @@ function Main(props) {
     props.getArticles();
   }, []);
 
-  const handleClick = (e) => {
+   const handleClick = (e) => {
     e.preventDefault();
     if (e.target !== e.currentTarget) {
       return;
@@ -43,7 +43,7 @@ function Main(props) {
     }
   };
 
-function likeHandler(event, postIndex, id) {
+  function likeHandler(event, postIndex, id) {
   event.preventDefault();
   let currentLikes = props.articles[postIndex].likes.count;
   let whoLiked = props.articles[postIndex].likes.whoLiked;
@@ -249,5 +249,4 @@ const mapDispatchToProps = (dispatch) => ({
   getArticles: () => dispatch(getArticlesAPI()),
   likeHandler: (payload) => dispatch(updateArticleAPI(payload)),
 });
-
 export default connect(mapStateToProps, mapDispatchToProps)(Main);

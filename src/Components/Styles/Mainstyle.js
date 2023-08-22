@@ -1,7 +1,10 @@
 import styled from "styled-components";
 
-export const Container=styled.div`
-   grid-area: main;
+export const Container = styled.div`
+  grid-area: main;
+  @media (max-width: 768px) {
+   padding:5px 5px 50px 5px;
+  }
 `;
 
 export const CommonCard=styled.div`

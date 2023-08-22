@@ -1,7 +1,15 @@
 import styled from "styled-components";
 
+
+
 export const Container = styled.div`
   grid-area: leftside;
+  position: sticky;
+  top: 60px;
+  height: 100vh;
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 export const ArtCard = styled.div`

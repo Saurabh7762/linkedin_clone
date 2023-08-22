@@ -17,7 +17,7 @@ import {
   PostButton,
   Editor,
   UploadImage,
-} from "./Postmodelstyle";
+} from "./Styles/Postmodelstyle";
 
 function Postmodel(props) {
   //  text editor functionality on popup

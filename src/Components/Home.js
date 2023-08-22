@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Content, Layout } from './Homestyle'
+import { Container, Content, Layout } from './Styles/Homestyle'
 import Main from './Main'
 import Rightside from './Rightside'
 import Leftside from './Leftside'

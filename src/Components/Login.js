@@ -1,5 +1,14 @@
 import React from 'react'
-import { Container, SignIn, Nav, Join, Section,Logingthumb, Form,Googleloging} from "./Loginstyle";
+import {
+  Container,
+  SignIn,
+  Nav,
+  Join,
+  Section,
+  Logingthumb,
+  Form,
+  Googleloging,
+} from "./Styles//Loginstyle";
 import { connect } from 'react-redux';
 import { signInAPI } from '../actions';
 import { Navigate } from 'react-router-dom';
