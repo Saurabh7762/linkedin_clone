@@ -43,9 +43,7 @@ function Header(props) {
                     //if user photo is not existing the show the dummy image
                     <img src="/images/user.svg" alt="" />
                   )}
-                  <span>
-                    <img src="/images/down-icon.svg" alt="" />
-                  </span>
+                 
                 </a>
 
                 <SignOut onClick={() => props.signOut()}>

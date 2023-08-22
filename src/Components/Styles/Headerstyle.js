@@ -185,6 +185,10 @@ export const User = styled(NavList)`
     width: 24px;
     height: 24px;
     border-radius: 50%;
+    @media (max-width: 768px) {
+      width: 40px;
+      height: auto;
+    }
   }
   span {
     display: flex;
