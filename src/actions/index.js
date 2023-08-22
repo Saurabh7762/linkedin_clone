@@ -1,8 +1,10 @@
 /* eslint-disable eqeqeq */
 /* eslint-disable no-template-curly-in-string */
-import { auth, Provider, storage } from "../Firebase/firebase";
+import { auth, Provider, storage } from "../firebase";
 import { SET_USER, SET_LOADING_STATUS, GET_ARTICLES } from "./actionType";
-import db from "../Firebase/firebase";
+import db from "../firebase";
+
+
 export const setUser=(payload)=>({
     type: SET_USER,
     user: payload,
