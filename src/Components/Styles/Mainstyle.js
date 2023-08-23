@@ -227,9 +227,51 @@ export const SocialActions=styled.div`
    }
 `;
 
+
 export const Content=styled.div`
    text-align: center;
    &>img{
       width:60px
    }
+`;
+export const CommentSectioninp = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  padding-bottom: 20px;
+  margin:5px 25px 0px 12px;
+  gap: 10px;
+
+
+  img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+  }
+  input {
+    width: 100%;
+    height: 30px;
+    border-radius: 15px;
+    padding-left: 15px;
+  }
+  button {
+    height: 32px;
+    border-radius: 5px;
+  }
+`;
+export const CommentSection = styled(SharedActor)`
+a{
+   margin-right: 12px;
+   flex-grow: 1;
+   overflow: hidden;
+   display: flex;
+   text-decoration: none;
+   img{
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+
+   }
+}
+
 `;

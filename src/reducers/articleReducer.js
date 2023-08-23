@@ -1,8 +1,13 @@
-import { SET_LOADING_STATUS, GET_ARTICLES } from "../actions/actionType";
+import {
+  SET_LOADING_STATUS,
+  GET_ARTICLES,
+  TOGGLE_COMMENT_INPUT,
+} from "../actions/actionType";
 
 export const initState = {
   articles: [],
   loading: false,
+  commentInputVisibility: [],
 };
 
 const articleReducer = (state = initState, action) => {
@@ -20,6 +25,14 @@ const articleReducer = (state = initState, action) => {
       return {
         ...state,
         loading: action.status,
+      };
+    case "TOGGLE_COMMENT_INPUT":
+      const { articleIndex } = action.payload;
+      const newVisibility = [...state.commentInputVisibility];
+      newVisibility[articleIndex] = !newVisibility[articleIndex];
+      return {
+        ...state,
+        commentInputVisibility: newVisibility,
       };
     default:
       return state;

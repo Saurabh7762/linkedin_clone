@@ -1,6 +1,10 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { getArticlesAPI, updateArticleAPI } from "../actions";
+import {
+  getArticlesAPI,
+  updateArticleAPI,
+  toggleCommentInput,
+} from "../actions";
 import { connect } from "react-redux";
 import ReactPlayer from "react-player";
 import {
@@ -13,9 +17,10 @@ import {
   SocialActions,
   SocialCounts,
   Content,
+  CommentSection,
+  CommentSectioninp,
 } from "./Styles/Mainstyle";
-import Postmodel  from "./Postmodel";
-
+import Postmodel from "./Postmodel";
 
 function Main(props) {
   const [showModal, setShowModal] = useState("close");
@@ -25,7 +30,7 @@ function Main(props) {
     props.getArticles();
   }, []);
 
-   const handleClick = (e) => {
+  const handleClick = (e) => {
     e.preventDefault();
     if (e.target !== e.currentTarget) {
       return;
@@ -44,35 +49,35 @@ function Main(props) {
   };
 
   function likeHandler(event, postIndex, id) {
-  event.preventDefault();
-  let currentLikes = props.articles[postIndex].likes.count;
-  let whoLiked = props.articles[postIndex].likes.whoLiked;
-  let user = props.user.email;
-  let userIndex = whoLiked.indexOf(user);
+    event.preventDefault();
+    let currentLikes = props.articles[postIndex].likes.count;
+    let whoLiked = props.articles[postIndex].likes.whoLiked;
+    let user = props.user.email;
+    let userIndex = whoLiked.indexOf(user);
 
-  if (userIndex >= 0) {
-    currentLikes--;
-    whoLiked.splice(userIndex, 1);
-  } else if (userIndex === -1) {
-    currentLikes++;
-    whoLiked.push(user);
+    if (userIndex >= 0) {
+      currentLikes--;
+      whoLiked.splice(userIndex, 1);
+    } else if (userIndex === -1) {
+      currentLikes++;
+      whoLiked.push(user);
+    }
+
+    const payload = {
+      update: {
+        likes: {
+          count: currentLikes,
+          whoLiked: whoLiked,
+        },
+      },
+      id: id,
+    };
+
+    props.likeHandler(payload);
   }
 
-  const payload = {
-    update: {
-      likes: {
-        count: currentLikes,
-        whoLiked: whoLiked,
-      },
-    },
-    id: id,
-  };
-
-  props.likeHandler(payload);
-}
-
-
-
+  
+  
 
   return (
     <Container>
@@ -211,7 +216,7 @@ function Main(props) {
                       </svg>
                       <span>Like</span>
                     </button>
-                    <button>
+                    <button onClick={() => props.toggleCommentInput(key)}>
                       <img src="/images/comment.svg" alt="" />
                       <span>Comments</span>
                     </button>
@@ -224,6 +229,33 @@ function Main(props) {
                       <span>Send</span>
                     </button>
                   </SocialActions>
+                  {props.commentInputVisibility[key] && (
+                    <>
+                      <CommentSectioninp>
+                        {props.user && props.user.photoURL ? (
+                          <img src={props.user.photoURL} alt="" />
+                        ) : (
+                          <img src="/images/user.svg" alt="" />
+                        )}
+                        <input placeholder="This feature under development..." />
+                        <button>Post</button>
+                      </CommentSectioninp>
+                      {/* <CommentSection>
+                        <a>
+                          {props.user && props.user.photoURL ? (
+                            <img src={props.user.photoURL} alt="" />
+                          ) : (
+                            <img src="/images/user.svg" alt="" />
+                          )}
+                          <div>
+                            <span>{props.user.displayName}</span>
+                            <span>{props.user.email}</span>
+                            <span>{props.user.timestamp}</span>
+                          </div>
+                        </a>
+                      </CommentSection> */}
+                    </>
+                  )}
                 </Artical>
               ))}
           </Content>
@@ -241,6 +273,7 @@ const mapStateToProps = (state) => {
     user: state.userState.user,
     articles: state.articleState.articles,
     ids: state.articleState.ids,
+    commentInputVisibility: state.articleState.commentInputVisibility,
   };
 };
 
@@ -248,5 +281,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => ({
   getArticles: () => dispatch(getArticlesAPI()),
   likeHandler: (payload) => dispatch(updateArticleAPI(payload)),
+  toggleCommentInput: (articleIndex) => {
+    dispatch({ type: "TOGGLE_COMMENT_INPUT", payload: { articleIndex } });
+  },
 });
 export default connect(mapStateToProps, mapDispatchToProps)(Main);

@@ -1,7 +1,12 @@
 /* eslint-disable eqeqeq */
 /* eslint-disable no-template-curly-in-string */
 import { auth, Provider, storage } from "../firebase";
-import { SET_USER, SET_LOADING_STATUS, GET_ARTICLES } from "./actionType";
+import {
+  SET_USER,
+  SET_LOADING_STATUS,
+  GET_ARTICLES,
+  TOGGLE_COMMENT_INPUT,
+} from "./actionType";
 import db from "../firebase";
 
 
@@ -170,6 +175,17 @@ export function getArticlesAPI() {
 
 export function updateArticleAPI(payload) {
   return (dispatch) => {
+    
     db.collection("articles").doc(payload.id).update(payload.update);
   };
 }
+
+
+export const toggleCommentInput = () => ({
+  type: TOGGLE_COMMENT_INPUT,
+});
+
+
+
+
+
