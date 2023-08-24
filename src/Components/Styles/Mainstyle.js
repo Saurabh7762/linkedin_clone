@@ -159,7 +159,7 @@ export const SharedImg=styled.div`
 export const SocialCounts = styled.ul`
    line-height: 1.3;
    display: flex;
-   align-items: flex-start;
+   justify-content: space-between;
    overflow: auto;
    margin: 0 16px;
    padding: 8px 0;
@@ -176,8 +176,12 @@ export const SocialCounts = styled.ul`
          span{
             padding-left: 5px;
          }
+         &:last-child{
+            cursor: pointer;
+         }
       }
    }
+   
 `;
 
 export const SocialActions=styled.div`

@@ -1,10 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import {
-  getArticlesAPI,
-  updateArticleAPI,
-  
-} from "../actions";
+import { getArticlesAPI, updateArticleAPI, addComment } from "../actions";
 import { connect } from "react-redux";
 import ReactPlayer from "react-player";
 import {
@@ -23,11 +19,21 @@ import Postmodel from "./Postmodel";
 
 function Main(props) {
   const [showModal, setShowModal] = useState("close");
+  const [commentInputValue, setCommentInputValue] = useState("");
+
+
+
+
 
   // use useeffect to retain the article data from firebase to frontend
   useEffect(() => {
     props.getArticles();
   }, []);
+
+
+
+
+
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -75,7 +81,25 @@ function Main(props) {
     props.likeHandler(payload);
   }
 
-  
+ const handleCommentSubmit = (event, articleIndexc) => {
+   event.preventDefault();
+
+   if (commentInputValue.trim() !== "") {
+     const comment = {
+       text: commentInputValue,
+       timestamp: new Date(),
+       user: {
+         name: props.user.displayName, // Assuming the user's name is available
+         email: props.user.email, // Assuming the user's email is available
+       },
+     };
+
+     props.addComment(articleIndexc, comment);
+     setCommentInputValue("");
+   }
+ };
+
+
   
 
   return (
@@ -171,7 +195,8 @@ function Main(props) {
                     </a>
                   </SharedImg>
                   <SocialCounts>
-                    {props.articles[key].likes.count > 0 && (
+                    {(props.articles[key].likes.count > 0 ||
+                      props.articles[key].comments.length > 0) && (
                       <>
                         <li>
                           <button>
@@ -184,7 +209,9 @@ function Main(props) {
                           </button>
                         </li>
                         <li>
-                          <a>{article.comments} comments</a>
+                          <button onClick={() => props.toggleCommentInput(key)}>
+                            {props.articles[key].comments.length} comments
+                          </button>
                         </li>
                       </>
                     )}
@@ -236,8 +263,17 @@ function Main(props) {
                         ) : (
                           <img src="/images/user.svg" alt="" />
                         )}
-                        <input placeholder="This feature under development..." />
-                        <button>Post</button>
+                        <input
+                          type="text"
+                          value={commentInputValue}
+                          onChange={(e) => setCommentInputValue(e.target.value)}
+                          placeholder="Add a comment..."
+                        />
+                        <button
+                          onClick={(event) => handleCommentSubmit(event, key)}
+                        >
+                          Post
+                        </button>
                       </CommentSectioninp>
                       {/* <CommentSection>
                         <a>
@@ -282,6 +318,9 @@ const mapDispatchToProps = (dispatch) => ({
   likeHandler: (payload) => dispatch(updateArticleAPI(payload)),
   toggleCommentInput: (articleIndex) => {
     dispatch({ type: "TOGGLE_COMMENT_INPUT", payload: { articleIndex } });
+  },
+  addComment: (articleIndexc, comment) => {
+    dispatch(addComment(articleIndexc, comment));
   },
 });
 export default connect(mapStateToProps, mapDispatchToProps)(Main);

@@ -101,7 +101,7 @@ export function postArticleAPI(payload) {
               count: 0,
               whoLiked: [],
             },
-            comments: 0,
+            comments: [],
             description: payload.description,
           });
           // finish the loading here
@@ -121,11 +121,12 @@ export function postArticleAPI(payload) {
         },
         video: payload.video,
         sharedImg: "",
-        likes:{
+        likes: {
           count: 0,
           whoLiked: [],
         },
-        comments: 0,
+        comments: [],
+
         description: payload.description,
       });
       // finish the loading here
@@ -145,7 +146,7 @@ export function postArticleAPI(payload) {
           count:0,
           whoLiked:[],
         },
-        comments:0,
+        comments:[],
         description:payload.description,
       });
       dispatch(setLoading(false));
@@ -185,7 +186,39 @@ export const toggleCommentInput = () => ({
   type: TOGGLE_COMMENT_INPUT,
 });
 
+/*export const setArticles = (articles) => {
+  return {
+    type: "SET_ARTICLES",
+    payload: articles,
+  };
+};
+*/
 
+//add coment fetures
+
+
+export function addComment(articleIndexc, comment) {
+  return (dispatch, getState) => {
+    const articleId = getState().articleState.ids[articleIndexc]; // Get the article ID
+
+    const updatedArticle = {
+      comments: [
+        ...getState().articleState.articles[articleIndexc].comments,
+        comment,
+      ],
+    };
+
+    db.collection("articles")
+      .doc(articleId)
+      .update(updatedArticle)
+      .then(() => {
+        dispatch({ type: "ADD_COMMENT", payload: { articleIndexc, comment } });
+      })
+      .catch((error) => {
+        console.error("Error adding comment to Firestore: ", error);
+      });
+  };
+}
 
 
 
