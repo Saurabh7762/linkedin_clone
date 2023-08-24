@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import {
   getArticlesAPI,
   updateArticleAPI,
-  toggleCommentInput,
+  
 } from "../actions";
 import { connect } from "react-redux";
 import ReactPlayer from "react-player";
@@ -17,7 +17,6 @@ import {
   SocialActions,
   SocialCounts,
   Content,
-  CommentSection,
   CommentSectioninp,
 } from "./Styles/Mainstyle";
 import Postmodel from "./Postmodel";

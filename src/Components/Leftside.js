@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Container,ArtCard,UserInfo,CardBackground,Photo,Link,AddPhotoText,Widget,Item,CommunityCard, FixedContainer  } from './Styles/Leftsidestyle'
 
 function Leftside(props) {
-  let photoUrl = props.user.photoURL
+  let photoUrl = props.user
     ? props.user.photoURL
     : "/images/photo.svg";
   
