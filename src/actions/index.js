@@ -26,6 +26,7 @@ export function signInAPI(){
 
 // authentication information
 
+
 export function getUserAuth() {
     return (dispatch) => {
         auth.onAuthStateChanged(async (user) => {
@@ -174,6 +175,8 @@ export function getArticlesAPI() {
     };
 }
 
+
+
 export function updateArticleAPI(payload) {
   return (dispatch) => {
     
@@ -186,20 +189,12 @@ export const toggleCommentInput = () => ({
   type: TOGGLE_COMMENT_INPUT,
 });
 
-/*export const setArticles = (articles) => {
-  return {
-    type: "SET_ARTICLES",
-    payload: articles,
-  };
-};
-*/
 
-//add coment fetures
 
 
 export function addComment(articleIndexc, comment) {
-  return (dispatch, getState) => {
-    const articleId = getState().articleState.ids[articleIndexc]; // Get the article ID
+  return async (dispatch, getState) => {
+    const articleId = getState().articleState.ids[articleIndexc];
 
     const updatedArticle = {
       comments: [
@@ -208,17 +203,20 @@ export function addComment(articleIndexc, comment) {
       ],
     };
 
-    db.collection("articles")
-      .doc(articleId)
-      .update(updatedArticle)
-      .then(() => {
-        dispatch({ type: "ADD_COMMENT", payload: { articleIndexc, comment } });
-      })
-      .catch((error) => {
-        console.error("Error adding comment to Firestore: ", error);
+    try {
+      await db.collection("articles").doc(articleId).update(updatedArticle);
+      dispatch({
+        type: "ADD_COMMENT",
+        payload: { articleIndexc, comment },
       });
+    } catch (error) {
+      console.error("Error adding comment to Firestore: ", error);
+    }
   };
+
 }
+
+
 
 
 

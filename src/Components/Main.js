@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { getArticlesAPI, updateArticleAPI, addComment } from "../actions";
+import { getArticlesAPI, updateArticleAPI, addComment,  } from "../actions";
 import { connect } from "react-redux";
 import ReactPlayer from "react-player";
 import {
@@ -14,12 +14,13 @@ import {
   SocialCounts,
   Content,
   CommentSectioninp,
+  CommentSection,
 } from "./Styles/Mainstyle";
 import Postmodel from "./Postmodel";
 
 function Main(props) {
   const [showModal, setShowModal] = useState("close");
-  const [commentInputValue, setCommentInputValue] = useState("");
+  const [commentInputValues, setCommentInputValues] = useState({});
 
 
 
@@ -80,24 +81,35 @@ function Main(props) {
 
     props.likeHandler(payload);
   }
+  const handleCommentInputChange = (articleId, value) => {
+    setCommentInputValues((prevState) => ({
+      ...prevState,
+      [articleId]: value,
+    }));
+  };
 
- const handleCommentSubmit = (event, articleIndexc) => {
-   event.preventDefault();
+  const handleCommentSubmit = (event, articleIndexc, articleId) => {
+    event.preventDefault();
 
-   if (commentInputValue.trim() !== "") {
-     const comment = {
-       text: commentInputValue,
-       timestamp: new Date(),
-       user: {
-         name: props.user.displayName, // Assuming the user's name is available
-         email: props.user.email, // Assuming the user's email is available
-       },
-     };
+    const commentInputValueForArticle = commentInputValues[articleId];
 
-     props.addComment(articleIndexc, comment);
-     setCommentInputValue("");
-   }
- };
+    if (commentInputValueForArticle.trim() !== "") {
+      const comment = {
+        text: commentInputValueForArticle,
+        timestamp: new Date(),
+        user: {
+          name: props.user.displayName,
+          email: props.user.email,
+          photoURL: props.user.photoURL,
+        },
+      };
+
+      props.addComment(articleIndexc, comment);
+      handleCommentInputChange(articleId, ""); // Clear input value for the article
+    }
+  };
+
+
 
 
   
@@ -265,17 +277,44 @@ function Main(props) {
                         )}
                         <input
                           type="text"
-                          value={commentInputValue}
-                          onChange={(e) => setCommentInputValue(e.target.value)}
+                          value={commentInputValues[props.ids[key]] || ""}
+                          onChange={(e) =>
+                            handleCommentInputChange(
+                              props.ids[key],
+                              e.target.value
+                            )
+                          }
                           placeholder="Add a comment..."
                         />
                         <button
-                          onClick={(event) => handleCommentSubmit(event, key)}
+                          onClick={(event) =>
+                            handleCommentSubmit(event, key, props.ids[key])
+                          }
                         >
                           Post
                         </button>
                       </CommentSectioninp>
+                      <CommentSection>
+                        {props.articles[key].comments.map(
+                          (comment, commentIndex) => (
+                            <>
+                              <div key={commentIndex}>
+                                <img src={comment.user.photoURL} alt="" />
+                                <div>
+                                  <span>{comment.user.name}</span>
+                                  <span>{comment.user.email}</span>
+                                  <p>{comment.text}</p>
+                                </div>
+                              </div>
+                            </>
+                          )
+                        )}
+                        
+                      </CommentSection>
+
                       {/* <CommentSection>
+                      {props.articles[key].comments.map(
+                          (comment, commentIndex) => (
                         <a>
                           {props.user && props.user.photoURL ? (
                             <img src={props.user.photoURL} alt="" />
@@ -286,9 +325,10 @@ function Main(props) {
                             <span>{props.user.displayName}</span>
                             <span>{props.user.email}</span>
                             <span>{props.user.timestamp}</span>
+                            <span>{a}</span>
                           </div>
                         </a>
-                      </CommentSection> */}
+                      </CommentSection>  */}
                     </>
                   )}
                 </Artical>

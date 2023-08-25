@@ -7,7 +7,6 @@ export const GET_ARTICLES = "GET_ARTICLES";
 
 export const TOGGLE_COMMENT_INPUT = "TOGGLE_COMMENT_INPUT";
 
-//export const SET_ARTICLES = "SET_ARTICLES";
 
 
 export const ADD_COMMENT = "ADD_COMMENT";

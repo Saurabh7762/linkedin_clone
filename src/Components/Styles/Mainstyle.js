@@ -245,8 +245,6 @@ export const CommentSectioninp = styled.div`
   padding-bottom: 20px;
   margin:5px 25px 0px 12px;
   gap: 10px;
-
-
   img {
     width: 40px;
     height: 40px;
@@ -263,19 +261,46 @@ export const CommentSectioninp = styled.div`
     border-radius: 5px;
   }
 `;
-export const CommentSection = styled(SharedActor)`
-a{
-   margin-right: 12px;
-   flex-grow: 1;
-   overflow: hidden;
-   display: flex;
-   text-decoration: none;
-   img{
-      width: 40px;
-      height: 40px;
+export const CommentSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  color: gray;
+  div {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+    margin-top: 10px;
+
+    width: 100%;
+    img {
+      width: 48px;
+      height: 48px;
       border-radius: 50%;
+      padding-right: 8px;
+      padding: 10px;
+    }
+    div {
+      display: flex;
+      align-items: flex-start;
+      flex-direction: column;
+      margin-left: 10px;
+      background-color: rgb(242, 242, 242);
+      border-radius: 0 7px 7px 7px;
+      width: 75%;
+      padding: 10px;
+      span:nth-child(1) {
+        font-weight: bold;
+      }
 
-   }
-}
-
+      span:nth-child(2) {
+        font-size: 14px;
+        font-weight: 300;
+      }
+      p {
+        margin-top: 10px;
+        text-align: start;
+      }
+    }
+  }
 `;
